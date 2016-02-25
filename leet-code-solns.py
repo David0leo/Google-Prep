@@ -40,6 +40,77 @@ def isSameTree(self, p, q):
                 
     return True
 
+#100. Same Tree v2 - 44ms
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+def isSameTree(self, p, q):
+    """
+    :type p: TreeNode
+    :type q: TreeNode
+    :rtype: bool
+    Recursive Solution
+    """
+    if p == None or q == None:
+        return p == q
+    elif p.val != q.val:
+        return False
+    else:
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+
+#104. Maximum Depth of Binary Tree - 60ms
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+def maxDepth(self, root):
+    """
+    :type root: TreeNode
+    :rtype: int
+    Solve by BFS - level order
+    """
+    if not root:
+        return 0
+        
+    stack = [root]
+    height = 0
+    while stack:
+        next = []
+        while stack:
+            current = stack.pop()
+            if current.left:
+                next.append(current.left)
+            if current.right:
+                next.append(current.right)
+        stack = next
+        height += 1
+    return height
+
+#104. Maximum Depth of Binary Tree v2 - 64ms
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+def maxDepth(self, root):
+    """
+    :type root: TreeNode
+    :rtype: int
+    Recursive solution
+    """
+    if root == None:
+        return 0
+    else:
+        return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
 
 #169. Majority Element - 52ms
 def majorityElement(self, nums):
@@ -59,6 +130,14 @@ def majorityElement(self, nums):
             index = i
     return nums[index]
 
+#169. Majority Element v2 - 48ms
+def majorityElement(self, nums):
+    """
+    :type nums: List[int]
+    :rtype: int
+    """
+    return sorted(nums)[len(nums)//2]
+
 #217. Contains Duplicate - 60ms
 def containsDuplicate(self, nums):
     """
@@ -76,6 +155,53 @@ def containsDuplicate(self, nums):
             num_map[num_string] = 1
     return False
 
+#226. Invert Binary Tree - 36ms
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+def invertTree(self, root):
+    """
+    :type root: TreeNode
+    :rtype: TreeNode
+    """
+    if not root:
+        return None
+        
+    stack = [root]
+    while stack:
+        next = []
+        while stack:
+            current_node = stack.pop()
+            self.swap_children(current_node)
+            if current_node.left:
+                next.append(current_node.left)
+            if current_node.right:
+                next.append(current_node.right)
+        stack = next
+    return root
+    
+    def swap_children(self, root):
+        if not root:
+            return None
+        if root.left:
+            if root.right:
+                temp = root.left
+                root.left = root.right
+                root.right = temp
+            else:
+                root.right = root.left
+                root.left = None
+        else:
+            if root.right:
+                root.left = root.right
+                root.right = None
+
+
+
 #237. Delete Node in a Linked List - 64ms
 """Got 2 different values when run 2times"""
 # Definition for singly-linked list.
@@ -89,6 +215,7 @@ def deleteNode(self, node):
     :type node: ListNode
     :rtype: void Do not return anything, modify node in-place instead.
     """
+    #if you include if node: before block, you get 60ms soln
     if node.next:
         node.val = node.next.val
         node.next = node.next.next
@@ -151,6 +278,32 @@ def isAnagram(self, s, t):
         else:
             count_map2[char] = 1
     return count_map1 == count_map2
+
+#258. Add Digits - 64ms
+def addDigits(self, num):
+    """
+    :type num: int
+    :rtype: int
+    """
+    if num == 0:
+        return 0
+    elif num % 9 == 0:
+        return 9
+    else:
+        return num - 9*((num - 1)//9)
+
+#258. Add Digits v2 - 52ms
+ def addDigits(self, num):
+    """
+    :type num: int
+    :rtype: int
+    """
+    if num == 0:
+        return 0
+    elif num % 9 == 0:
+        return 9
+    else:
+        return num % 9
 
 #260. Single Number III - 48ms
 def singleNumber(self, nums):
