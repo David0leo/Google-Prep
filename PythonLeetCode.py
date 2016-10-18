@@ -67,7 +67,7 @@ def addTwoNumbers(l1, l2):
             back.next = ListNode(1)
         return(front)
     
-def addTwoNumbers(l1, l2):
+def addTwoNumbers2(l1, l2):
     #faster, creates new list
     head = ListNode(None)
     cur = None
