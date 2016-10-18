@@ -88,3 +88,11 @@ def addTwoNumbers2(l1, l2):
             cur.next = ListNode(sum%10)
             cur = cur.next
     return(head)
+
+######### 3. Longest Substring Without #########
+#########    Repeating Characters      #########
+# -- Given string s, find the length of the
+#    longest substring w/o repeating characters
+
+def lengthOfLongestSubstring(s):
+    
