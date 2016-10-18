@@ -15,3 +15,5 @@ def twoSum(A, k):
         if k - n in D:
             return([ D[k-n] , i] )
         D[n] = i
+
+def
