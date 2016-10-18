@@ -10,10 +10,8 @@ def twoSum(A, k):
     # Can reduce space at cost of time.
     # O(|A|lg(|A|)) sol'n using binary
     # search on sorted A can do O(1) space.
-    S = set(A)
-    for n in S:
-        if k - n in S:
-            return [n, k-n]
-    # not necessary, but feels bad leaving
-    # no return value on no sol'n found.
-    return []    
+    D = {}
+    for i, n in enumerate(A):
+        if k - n in D:
+            return([ D[k-n] , i] )
+        D[n] = i
