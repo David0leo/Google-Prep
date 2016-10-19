@@ -95,4 +95,12 @@ def addTwoNumbers2(l1, l2):
 #    longest substring w/o repeating characters
 
 def lengthOfLongestSubstring(s):
-    
+    cur_front = 0
+        max_so_far = 0
+        D = {}
+        for i, char in enumerate(s):
+            if char in D:
+                cur_front = max(cur_front, D[char] + 1)
+            D[char] = i
+            max_so_far = max(max_so_far, i - cur_front + 1)
+        return max_so_far
