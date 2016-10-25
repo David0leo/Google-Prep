@@ -122,3 +122,23 @@ def longestPalindrome(s):
         if P[i] > P[center]:
             center = i
     return T[center - P[center] + 2: center + P[center] : 2]
+
+############## 6. ZigZag Conversion ##############
+# - Word written in zig-zag pattern on numRows rows
+# EX: "PAYPALISHIRING" with numRows = 3 becomes:
+#     P   A   H   N
+#     A P L S I I G
+#     Y   I   R
+def convertZigZag(s, numRows):
+    if numRows <= 1:
+            return s
+        ret = []
+        inc = 2*numRows - 2
+        n = len(s)
+        for i in range(numRows):
+            for j in range(i, n, inc):
+                ret.append(s[j])
+                k = j + inc - 2*i
+                if i != 0 and i != numRows - 1 and k < n:
+                    ret.append(s[k])
+        return ''.join(ret)
