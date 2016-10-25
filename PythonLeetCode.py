@@ -104,3 +104,21 @@ def lengthOfLongestSubstring(s):
             D[char] = i
             max_so_far = max(max_so_far, i - cur_front + 1)
         return max_so_far
+    
+######## 5. Longest Palindromic Substring ########
+# -- Given string s, find the longest palindromic
+#    substring in s.
+# -- Assume max len of s is 1000, and soln is unique
+
+def longestPalindrome(s):
+    T = '^#' + '#'.join(s) + '#&'
+    P = [0] + [1]*(len(T) - 2) + [0]
+    center = 1
+    for i in range(1, len(T) - 1):
+        if P[center] + center > i:
+            P[i] = min(P[2*center - i], P[center] + center - i)
+        while i - P[i] >= 0 and i + P[i] < len(T) and T[i - P[i]] == T[i + P[i]]:
+            P[i] += 1
+        if P[i] > P[center]:
+            center = i
+    return T[center - P[center] + 2: center + P[center] : 2]
