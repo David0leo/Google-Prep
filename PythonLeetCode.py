@@ -142,3 +142,18 @@ def convertZigZag(s, numRows):
                 if i != 0 and i != numRows - 1 and k < n:
                     ret.append(s[k])
         return ''.join(ret)
+
+########### 7. Reverse Integer ###################
+# - Reverse the digits of an integer
+# EX: x = 123 -> return 321
+#     x = -123 -> return -321
+def reverseInt(x):
+    if x >= 0:
+        num = int(str(x)[::-1])
+    else:
+        num = -1 * int(str(abs(x))[::-1])
+    #using <= 2147483647 faster sometimes, but not as readable  
+    if abs(num) < 2**31:
+        return(num)
+    else:
+        return(0)
