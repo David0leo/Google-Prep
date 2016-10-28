@@ -151,7 +151,7 @@ def reverseInt(x):
     if x >= 0:
         num = int(str(x)[::-1])
     else:
-        num = -1 * int(str(abs(x))[::-1])
+        num = -int(str(-x)[::-1])
     #using <= 2147483647 faster sometimes, but not as readable  
     if abs(num) < 2**31:
         return(num)
