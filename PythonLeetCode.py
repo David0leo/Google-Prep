@@ -157,3 +157,20 @@ def reverseInt(x):
         return(num)
     else:
         return(0)
+
+########## 9. Palindrome Number ########################
+# - Return True if integer is palindrom, False otherwise
+# - Do it with O(1) space
+
+def isPalindrome(x):
+    o = x
+    if x < 0:
+        return False
+    s = 0
+    while x > 0:
+        s *= 10
+        r = x % 10
+        s += r
+        x -= r
+        x /= 10
+    return s == o
